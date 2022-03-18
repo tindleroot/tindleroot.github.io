@@ -1,0 +1,55 @@
+
+<select [(ngModel)]="selectedDraft" (ngModelChange)="changeDraft()">
+    <option selected>Select draft...</option>
+    <option *ngFor="let d of drafts" [ngValue]="d">{{d.draft_name}}</option>
+</select>
+
+<div *ngIf="selectedDraft">
+    <h2>{{selectedDraftDetail.draft_name}}</h2>
+
+    <p>{{selectedDraftDetail.draft_type}} draft ({{selectedDraftDetail.draft_key}})</p>
+
+    <table class="picked">
+        <thead>
+            <tr>
+                <th>Pick</th>
+                <th>Team</th>
+                <th *ngFor="let i of counter(selectedDraftDetail.rounds)">Pick {{i+1}}</th>
+                <th *ngFor="let i of counter(selectedDraftDetail.rounds)">Score {{i+1}}</th>
+                <th>Total Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let team of selectedDraftDetail.teams">
+                <td>{{team.slot}}</td>
+                <td>{{team.team_short}}</td>
+                <td *ngFor="let i of counter(selectedDraftDetail.rounds)">
+                    {{team.picks[i] ? team.picks[i].pick_id : ""}}
+                </td>
+                <td *ngFor="let i of counter(selectedDraftDetail.rounds)">
+                    {{team.picks[i] ? team.picks[i].score : ""}}
+                </td>
+                <td>{{team.score}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <div *ngIf="availableDraftPicks">
+        <table>
+            <thead>
+                <th colspan="10">Available Teams</th>
+            </thead>
+            <tr *ngFor="let row of availableDraftPicks">
+                <td *ngFor="let pick of row" class="available">{{pick.pick_id}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Display Results as graph -->
+
+</div>
+
+
+

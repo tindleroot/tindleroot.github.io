@@ -1,0 +1,34 @@
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 0.25rem;
+}
+
+thead {
+    background-color: #7bb9f3;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #eeeeee;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #d5d5d5;
+}
+
+tbody td:nth-child(6), th:nth-child(6) {
+    border-left: solid 2px #222222;
+}
+
+tbody td:nth-child(2), th:nth-child(2) {
+    border-left: solid 2px #222222;
+}
+
+tbody td:nth-child(9), th:nth-child(9) {
+    border-left: solid 2px #222222;
+}
+
+.available {
+    border: none;
+    padding: 0.5rem;
+}
