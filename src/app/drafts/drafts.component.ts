@@ -25,7 +25,10 @@ export class DraftsComponent implements OnInit {
   }
 
   getDrafts(): void {
-    this.draftService.getDrafts(1).subscribe(drafts => this.drafts = drafts);
+    this.draftService.getDrafts(1).subscribe(drafts => {
+      this.drafts = drafts;
+      this.drafts.sort((a,b) => a.draft_name.localeCompare(b.draft_name));
+    });
   }
 
   getDraftPicks(): void {
