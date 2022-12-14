@@ -24,8 +24,8 @@ export class DraftService {
     );
   }
 
-  getDrafts(id: number): Observable<Draft[]> {
-    return this.http.get<Draft[]>(`${this.baseUrl}/league/${id}/drafts`)
+  getDrafts(league_id: number): Observable<Draft[]> {
+    return this.http.get<Draft[]>(`${this.baseUrl}/league/${league_id}/drafts`)
     .pipe(
       tap(_ => this.log('fetched drafts')),
       catchError(this.handleError<Draft[]>('getDraft', []))
