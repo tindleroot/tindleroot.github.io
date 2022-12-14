@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Draft, DraftPick, DraftTeam } from '../data';
+import { Bar } from '../model';
 import { DraftService } from '../draft.service';
 
 @Component({
@@ -14,6 +15,27 @@ export class DraftsComponent implements OnInit {
   selectedDraftDetail: Draft;
   availableDraftPicks: DraftPick[][];
 
+  bars: Bar[] = [
+    {
+      value: 108,
+      color: 'blue',
+      size: '10',
+      legend: '461'
+    },
+    {
+      value: 90,
+      color: 'red',
+      size: '10',
+      legend: '234'
+    },
+    {
+      value: 88,
+      color: 'green',
+      size: '10',
+      legend: '7457'
+    }
+  ];
+
   constructor(private draftService: DraftService) { }
 
   ngOnInit(): void {
@@ -25,7 +47,7 @@ export class DraftsComponent implements OnInit {
   }
 
   getDrafts(): void {
-    this.draftService.getDrafts(1).subscribe(drafts => {
+    this.draftService.getDrafts(2).subscribe(drafts => {
       this.drafts = drafts;
       this.drafts.sort((a,b) => a.draft_name.localeCompare(b.draft_name));
     });
