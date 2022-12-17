@@ -23,10 +23,10 @@
             <tr *ngFor="let team of selectedDraftDetail.teams">
                 <td>{{team.slot}}</td>
                 <td>{{team.team_short}}</td>
-                <td *ngFor="let i of counter(selectedDraftDetail.rounds)" class="{{team.picks[i].pick_status}}">
+                <td *ngFor="let i of counter(selectedDraftDetail.rounds)" [ngClass]="team.picks[i] == undefined ? 'Assigned' : team.picks[i].pick_status">
                     {{team.picks[i] ? team.picks[i].pick_id : ""}}
                 </td>
-                <td *ngFor="let i of counter(selectedDraftDetail.rounds)" class="{{team.picks[i].pick_status}}">
+                <td *ngFor="let i of counter(selectedDraftDetail.rounds)" [ngClass]="team.picks[i] == undefined ? 'Assigned' : team.picks[i].pick_status">
                     {{team.picks[i] ? team.picks[i].score : ""}}
                 </td>
                 <td>{{team.score}}</td>
