@@ -33,6 +33,12 @@ export class DraftsComponent implements OnInit {
       color: 'green',
       size: '10',
       legend: '7457'
+    },
+    {
+      value: 80,
+      color: 'purple',
+      size: '10',
+      legend: '4272'
     }
   ];
 
