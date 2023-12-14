@@ -1,4 +1,8 @@
 
+<select [(ngModel)]="selectedLeague" (ngModelChange)="getDrafts()">
+    <option *ngFor="let l of leagues" [ngValue]="l">{{l.name}}</option>
+</select>
+
 <select [(ngModel)]="selectedDraft" (ngModelChange)="changeDraft()">
     <option selected>Select draft...</option>
     <option *ngFor="let d of drafts" [ngValue]="d">{{d.draft_name}}</option>

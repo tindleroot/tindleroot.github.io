@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Draft, DraftPick, DraftTeam } from '../data';
+import { Draft, DraftPick, DraftTeam, League } from '../data';
 import { Bar } from '../model';
 import { DraftService } from '../draft.service';
 
@@ -9,6 +9,27 @@ import { DraftService } from '../draft.service';
   styleUrls: ['./drafts.component.scss']
 })
 export class DraftsComponent implements OnInit {
+
+  leagues: League[] = [
+    {
+      name: 'SLFF 2022',
+      id: 1
+    },
+    {
+      name: 'SLFF 2023',
+      id: 2
+    },
+    {
+      name: 'SLFF 2024',
+      id: 4
+    },
+    {
+      name: 'OFF 2023',
+      id: 3
+    },
+  ]
+
+  selectedLeague: League;
   drafts: Draft[];
   selectedDraftPicks: DraftPick[];
   selectedDraft: Draft;
@@ -45,6 +66,7 @@ export class DraftsComponent implements OnInit {
   constructor(private draftService: DraftService) { }
 
   ngOnInit(): void {
+    this.selectedLeague = this.leagues[2];
     this.getDrafts();
   }
 
@@ -53,7 +75,7 @@ export class DraftsComponent implements OnInit {
   }
 
   getDrafts(): void {
-    this.draftService.getDrafts(2).subscribe(drafts => {
+    this.draftService.getDrafts(this.selectedLeague.id).subscribe(drafts => {
       this.drafts = drafts;
       this.drafts.sort((a,b) => a.draft_name.localeCompare(b.draft_name));
     });

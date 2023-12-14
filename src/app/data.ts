@@ -1,3 +1,8 @@
+export interface League {
+    name: string;
+    id: number;
+}
+
 export interface Draft {
     draft_name: string;
     league_id: number;
