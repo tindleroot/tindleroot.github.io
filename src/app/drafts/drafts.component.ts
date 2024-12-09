@@ -12,16 +12,24 @@ export class DraftsComponent implements OnInit {
 
   leagues: League[] = [
     {
-      name: 'SLFF 2022',
-      id: 1
+      name: 'SLFF 2025',
+      id: 6
+    },
+    {
+      name: 'SLFF 2024',
+      id: 4
     },
     {
       name: 'SLFF 2023',
       id: 2
     },
     {
-      name: 'SLFF 2024',
-      id: 4
+      name: 'SLFF 2022',
+      id: 1
+    },
+    {
+      name: 'OFF 2024',
+      id: 5
     },
     {
       name: 'OFF 2023',
@@ -66,7 +74,7 @@ export class DraftsComponent implements OnInit {
   constructor(private draftService: DraftService) { }
 
   ngOnInit(): void {
-    this.selectedLeague = this.leagues[2];
+    this.selectedLeague = this.leagues[0];
     this.getDrafts();
   }
 
