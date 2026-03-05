@@ -4,9 +4,10 @@ import { Bar } from '../model';
 import { DraftService } from '../draft.service';
 
 @Component({
-  selector: 'app-drafts',
-  templateUrl: './drafts.component.html',
-  styleUrls: ['./drafts.component.scss']
+    selector: 'app-drafts',
+    templateUrl: './drafts.component.html',
+    styleUrls: ['./drafts.component.scss'],
+    standalone: false
 })
 export class DraftsComponent implements OnInit {
 
