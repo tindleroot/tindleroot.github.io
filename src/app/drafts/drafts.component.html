@@ -1,69 +1,85 @@
 
 <select [(ngModel)]="selectedLeague" (ngModelChange)="getDrafts()">
-    <option *ngFor="let l of leagues" [ngValue]="l">{{l.name}}</option>
+  @for (l of leagues; track l) {
+    <option [ngValue]="l">{{l.name}}</option>
+  }
 </select>
 
 <select [(ngModel)]="selectedDraft" (ngModelChange)="changeDraft()">
-    <option selected>Select draft...</option>
-    <option *ngFor="let d of drafts" [ngValue]="d">{{d.draft_name}}</option>
+  <option selected>Select draft...</option>
+  @for (d of drafts; track d) {
+    <option [ngValue]="d">{{d.draft_name}}</option>
+  }
 </select>
 
-<div *ngIf="selectedDraft">
+@if (selectedDraft) {
+  <div>
     <h2>{{selectedDraftDetail.draft_name}}</h2>
-
     <p>{{selectedDraftDetail.draft_type}} draft ({{selectedDraftDetail.draft_key}})</p>
-
     <table class="picked">
-        <thead>
-            <tr>
-                <th>Pick</th>
-                <th>Team</th>
-                <th *ngFor="let i of counter(selectedDraftDetail.rounds)">Pick {{i+1}}</th>
-                <th *ngFor="let i of counter(selectedDraftDetail.rounds)">Score {{i+1}}</th>
-                <th>Total Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let team of selectedDraftDetail.teams">
-                <td>{{team.slot}}</td>
-                <td>{{team.team_short}}</td>
-                <td *ngFor="let i of counter(selectedDraftDetail.rounds)" [ngClass]="team.picks[i] == undefined ? 'Assigned' : team.picks[i].pick_status">
-                    {{team.picks[i] ? team.picks[i].pick_id : ""}}
-                </td>
-                <td *ngFor="let i of counter(selectedDraftDetail.rounds)" [ngClass]="team.picks[i] == undefined ? 'Assigned' : team.picks[i].pick_status">
-                    {{team.picks[i] ? team.picks[i].score : ""}}
-                </td>
-                <td>{{team.score}}</td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th>Pick</th>
+          <th>Team</th>
+          @for (i of counter(selectedDraftDetail.rounds); track i) {
+            <th>Pick {{i+1}}</th>
+          }
+          @for (i of counter(selectedDraftDetail.rounds); track i) {
+            <th>Score {{i+1}}</th>
+          }
+          <th>Total Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (team of selectedDraftDetail.teams; track team) {
+          <tr>
+            <td>{{team.slot}}</td>
+            <td>{{team.team_short}}</td>
+            @for (i of counter(selectedDraftDetail.rounds); track i) {
+              <td [ngClass]="team.picks[i] == undefined ? 'Assigned' : team.picks[i].pick_status">
+                {{team.picks[i] ? team.picks[i].pick_id : ""}}
+              </td>
+            }
+            @for (i of counter(selectedDraftDetail.rounds); track i) {
+              <td [ngClass]="team.picks[i] == undefined ? 'Assigned' : team.picks[i].pick_status">
+                {{team.picks[i] ? team.picks[i].score : ""}}
+              </td>
+            }
+            <td>{{team.score}}</td>
+          </tr>
+        }
+      </tbody>
     </table>
-
     <br>
-
-    <div *ngIf="availableDraftPicks">
-        <table>
+      @if (availableDraftPicks) {
+        <div>
+          <table>
             <thead>
-                <th colspan="10">Available Teams</th>
+              <th colspan="10">Available Teams</th>
             </thead>
-            <tr *ngFor="let row of availableDraftPicks">
-                <td *ngFor="let pick of row" class="available">{{pick.pick_id}}</td>
-            </tr>
-        </table>
-    </div>
-
-    <!-- Display Results as graph -->
-    <!-- <div class="bargraph">
-        <div class="bars" *ngFor="let bar of bars">
-            <span>{{bar.value}}</span>
-            <div class="bar" [style.background-color]="bar.color" [style.height]="bar.size"></div>
+            @for (row of availableDraftPicks; track row) {
+              <tr>
+                @for (pick of row; track pick) {
+                  <td class="available">{{pick.pick_id}}</td>
+                }
+              </tr>
+            }
+          </table>
         </div>
+      }
+      <!-- Display Results as graph -->
+      <!-- <div class="bargraph">
+      <div class="bars" *ngFor="let bar of bars">
+        <span>{{bar.value}}</span>
+        <div class="bar" [style.background-color]="bar.color" [style.height]="bar.size"></div>
+      </div>
     </div>
     <div class="line"></div>
     <div class="legends">
-        <spen *ngFor="let bar of bars">{{bar.legend}}</spen>
+      <spen *ngFor="let bar of bars">{{bar.legend}}</spen>
     </div> -->
-
-</div>
+  </div>
+}
 
 
 
