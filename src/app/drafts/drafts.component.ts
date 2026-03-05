@@ -13,6 +13,10 @@ export class DraftsComponent implements OnInit {
 
   leagues: League[] = [
     {
+      name: 'SLFF 2028',
+      id: 105
+    },
+    {
       name: 'SLFF 2025',
       id: 6
     },
@@ -36,7 +40,7 @@ export class DraftsComponent implements OnInit {
       name: 'OFF 2023',
       id: 3
     },
-  ]
+  ];
 
   selectedLeague: League;
   drafts: Draft[];
@@ -69,7 +73,7 @@ export class DraftsComponent implements OnInit {
       color: 'purple',
       size: '10',
       legend: '4272'
-    }
+    },
   ];
 
   constructor(private draftService: DraftService) { }
