@@ -13,7 +13,7 @@ export class DraftsComponent implements OnInit {
 
   leagues: League[] = [
     {
-      name: 'SLFF 2028',
+      name: 'SLFF 2026',
       id: 105
     },
     {
