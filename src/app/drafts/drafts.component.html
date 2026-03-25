@@ -17,6 +17,15 @@
     <h2>{{selectedDraftDetail.draft_name}}</h2>
     <p>{{selectedDraftDetail.draft_type}} draft ({{selectedDraftDetail.draft_key}})</p>
     <table class="picked">
+      <caption>
+        <table class="score-legend">
+          <td class="score-legend play0">Not Played</td>
+          <td class="score-legend playing1">Playing 1st</td>
+          <td class="score-legend play1">1 Done</td>
+          <td class="score-legend playing2">Playing 2nd</td>
+          <td class="score-legend play2">2 Done</td>
+        </table>
+      </caption>
       <thead>
         <tr>
           <th>Pick</th>
@@ -24,28 +33,30 @@
           @for (i of counter(selectedDraftDetail.rounds); track i) {
             <th>Pick {{i+1}}</th>
           }
-          @for (i of counter(selectedDraftDetail.rounds); track i) {
-            <th>Score {{i+1}}</th>
-          }
           <th>Total Score</th>
         </tr>
       </thead>
       <tbody>
         @for (team of selectedDraftDetail.teams; track team) {
           <tr>
-            <td>{{team.slot}}</td>
-            <td>{{team.team_short}}</td>
+            <td rowspan="2">{{team.slot}}</td>
+            <td rowspan="2">{{team.team_short}}</td>
             @for (i of counter(selectedDraftDetail.rounds); track i) {
               <td [ngClass]="team.picks[i] == undefined ? 'Assigned' : team.picks[i].pick_status">
                 {{team.picks[i] ? team.picks[i].pick_id : ""}}
               </td>
             }
+            <td rowspan="2">{{team.score}}</td>
+          </tr>
+          <tr>
+            <td style="display:none"></td>
+            <td style="display:none"></td>
             @for (i of counter(selectedDraftDetail.rounds); track i) {
-              <td [ngClass]="team.picks[i] == undefined ? 'Assigned' : team.picks[i].pick_status">
-                {{team.picks[i] ? team.picks[i].score : ""}}
+              <td [ngClass]="getCssClassesForDraftPick(team.picks[i])">
+                <i>{{team.picks[i] ? team.picks[i].score : ""}}</i>
               </td>
             }
-            <td>{{team.score}}</td>
+            <td style="display:none"></td>
           </tr>
         }
       </tbody>

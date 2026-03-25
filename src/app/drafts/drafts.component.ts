@@ -106,6 +106,15 @@ export class DraftsComponent implements OnInit {
     this.getDraftPicks();
   }
 
+  // Get class attributes based on Draft Pick state
+  getCssClassesForDraftPick(dp: DraftPick) {
+    if (dp == undefined) return "Assigned not-playing"; 
+
+    let playingClassName = (dp.event_in_progress ? "playing" : "play") + dp.event_count
+
+    return [dp.pick_status, playingClassName].join(" ");
+  }
+
   chunkSelectedDraftPicks(chunkSize: number): void {
     this.availableDraftPicks = [];
     let availablePicks: DraftPick[] = this.selectedDraftPicks.filter((pick, index, array) => !(['Assigned', 'MIA'].includes(pick.pick_status)));

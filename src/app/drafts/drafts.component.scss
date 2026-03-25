@@ -1,3 +1,7 @@
+.score-legend {
+    border-spacing: 5px;
+}
+
 table, th, td {
     border: 1px solid;
     border-collapse: collapse;
@@ -8,6 +12,26 @@ thead {
     background-color: #7bb9f3;
 }
 
+.play0 {
+    background-color: #e03232;
+}
+
+.playing1 {
+    background-color: #e29262;
+}
+
+.play1 {
+    background-color: #e2e262;
+}
+
+.playing2 {
+    background-color: #c711f5;
+}
+
+.play2 {
+    background-color: #d5d5d5;
+}
+
 tbody tr:nth-child(odd) {
     background-color: #eeeeee;
 }
@@ -16,15 +40,11 @@ tbody tr:nth-child(even) {
     background-color: #d5d5d5;
 }
 
-tbody td:nth-child(6), th:nth-child(6) {
+tbody td:nth-child(3), th:nth-child(3) {
     border-left: solid 2px #222222;
 }
 
-tbody td:nth-child(2), th:nth-child(2) {
-    border-left: solid 2px #222222;
-}
-
-tbody td:nth-child(9), th:nth-child(9) {
+tbody td:last-child, th:last-child {
     border-left: solid 2px #222222;
 }
 

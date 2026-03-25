@@ -29,4 +29,6 @@ export interface DraftPick {
     assigned_team_slot: number;
     waiver_expiry: any;
     score: number;
+    event_count: number;
+    event_in_progress: boolean;
 }

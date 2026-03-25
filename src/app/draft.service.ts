@@ -19,7 +19,7 @@ export class DraftService {
   getDraft(id: number): Observable<Draft> {
     return this.http.get<Draft>(`${this.baseUrl}/draft/${id}`)
     .pipe(
-      tap(_ => this.log('fetched draft')),
+      tap(_ => this.log(`fetched draft ${id}`)),
       catchError(this.handleError<Draft>('getDraft', null))
     );
   }
@@ -70,7 +70,7 @@ export class DraftService {
   }
 
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
-    console.info(`HeroService: ${message}`)
+    this.messageService.add(`DraftService: ${message}`);
+    console.info(`DraftService: ${message}`)
   }
 }
